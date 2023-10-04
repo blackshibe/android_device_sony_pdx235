@@ -1,6 +1,11 @@
+r_dir_file(hal_fingerprint_default, vendor_firmware_file)
+
 allow hal_fingerprint_default etsd_device:chr_file rw_file_perms;
 
+allow hal_fingerprint_default tee_device:file rw_file_perms;
 allow hal_fingerprint_default tee_device:chr_file rw_file_perms;
+allow hal_fingerprint_default fingerprint_device:chr_file rw_file_perms;
+allow hal_fingerprint_default uhid_device:chr_file { ioctl w_file_perms };
 
 unix_socket_connect(hal_camera_default, tad, tad)
 
@@ -25,6 +30,11 @@ allow hal_fingerprint_default vendor_hal_perf_default:binder { call transfer };
 allow hal_fingerprint_default vendor_sysfs_battery_supply:file { read getattr open };
 allow hal_fingerprint_default vendor_sysfs_battery_supply:dir { search };
 
+typeattribute hal_fingerprint_default data_between_core_and_vendor_violators;
+
 allow hal_fingerprint_default tad_socket:sock_file write;
+
+allow hal_fingerprint_default fingerprintd_data_file:file create_file_perms;
+allow hal_fingerprint_default fingerprintd_data_file:dir rw_dir_perms;
 
 allow hal_fingerprint_default tad:unix_stream_socket { connectto };
