@@ -27,7 +27,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_ven
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Inherit from vendor blobs
-$(call inherit-product, vendor/sony/pdx225/pdx225-vendor.mk)
+$(call inherit-product, vendor/sony/pdx235/pdx235-vendor.mk)
 
 # VNDK
 PRODUCT_SHIPPING_API_LEVEL := 31
@@ -51,8 +51,8 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
-    SonyPDX225FrameworksRes \
-    SonyPDX225SystemUIRes \
+    SonyPDX235FrameworksRes \
+    SonyPDX235SystemUIRes \
     SonyMurrayFrameworksResCommon \
     SonyMurrayProductFrameworks \
     SonyMurraySettingsProviderOverlayCommon \

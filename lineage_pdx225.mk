@@ -26,11 +26,11 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 IS_PHONE := true
 
-PRODUCT_NAME := lineage_pdx225
-PRODUCT_DEVICE := pdx225
+PRODUCT_NAME := lineage_pdx235
+PRODUCT_DEVICE := pdx235
 PRODUCT_MANUFACTURER := Sony
 PRODUCT_BRAND := Sony
-PRODUCT_MODEL := Xperia 10 IV
+PRODUCT_MODEL := Xperia 10 V
 
 PRODUCT_GMS_CLIENTID_BASE := android-sonymobile
 

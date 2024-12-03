@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/sony/pdx225
+DEVICE_PATH := device/sony/pdx235
 
 BUILD_BROKEN_DUP_RULES := true
 
@@ -79,7 +79,7 @@ BOARD_KERNEL_CMDLINE := \
     iptable_raw.raw_before_defrag=1 \
     ip6table_raw.raw_before_defrag=1
 
-BOARD_KERNEL_CMDLINE += buildproduct=pdx225
+BOARD_KERNEL_CMDLINE += buildproduct=pdx235
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_OFFSET := 0x01000000
@@ -92,7 +92,7 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_NO_GCC := true
 TARGET_KERNEL_SOURCE := kernel/sony/sm6375
-TARGET_KERNEL_CONFIG := pdx225_defconfig
+TARGET_KERNEL_CONFIG := pdx235_defconfig
 
 BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
@@ -227,7 +227,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
 # OTA Assert
-TARGET_OTA_ASSERT_DEVICE := pdx225,XQ-CC72
+TARGET_OTA_ASSERT_DEVICE := pdx235,XQ-CC72
 
 # Power
 TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
@@ -291,4 +291,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
--include vendor/sony/pdx225/BoardConfigVendor.mk
+-include vendor/sony/pdx235/BoardConfigVendor.mk

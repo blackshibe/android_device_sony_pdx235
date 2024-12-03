@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE=pdx225
+DEVICE=pdx235
 VENDOR=sony
 
 # Load extract_utils and do some sanity checks
