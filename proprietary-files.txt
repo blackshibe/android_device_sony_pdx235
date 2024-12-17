@@ -1,5 +1,8 @@
 # Stock package version: XQ-CC72_Customized SEA_65.1.A.5.88
 
+# files without elfcheck:
+# libcne, lowi-server depend on libwpa_client, which is a gnu makefile target
+
 # ACDB
 vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
 vendor/etc/acdbdata/MTP/MTP_General_cal.acdb
@@ -177,8 +180,6 @@ vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
 vendor/lib64/soundfx/libshoebox.so
-vendor/lib64/libdisplayconfig.qti.so
-vendor/lib/libdisplayconfig.qti.so
 
 # Audio FX Modules (zambezi)
 vendor/etc/zoom_noise_reduction/znr_44k_ComboCam.tbl
@@ -726,7 +727,7 @@ vendor/etc/cne/wqeclient/VZW/VZW_profile6.xml
 vendor/etc/default-permissions/com.qualcomm.qti.cne.xml
 vendor/etc/init/cnd.rc
 vendor/etc/init/mutualex.rc
-vendor/lib/libcne.so
+vendor/lib/libcne.so;DISABLE_CHECKELF
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneoplookup.so
 vendor/lib/libcneqmiutils.so
@@ -757,7 +758,7 @@ vendor/lib/vendor.qti.hardware.data.qmi@1.0.so;MODULE_SUFFIX=_vendor
 vendor/lib/vendor.qti.ims.rcssip@1.0.so
 vendor/lib/vendor.qti.ims.rcssip@1.1.so
 vendor/lib/vendor.qti.ims.rcssip@1.2.so
-vendor/lib64/libcne.so
+vendor/lib64/libcne.so;DISABLE_CHECKELF
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libcneoplookup.so
 vendor/lib64/libcneqmiutils.so
@@ -811,9 +812,6 @@ vendor/lib64/vendor.qti.diaghal@1.0.so;MODULE_SUFFIX=_vendor
 # Display (Sony)
 vendor/bin/hw/vendor.semc.hardware.display@2.2-service
 vendor/etc/init/vendor.semc.hardware.display@2.2-service.rc
-vendor/lib64/vendor.semc.hardware.display@2.0.so
-vendor/lib64/vendor.semc.hardware.display@2.1.so
-vendor/lib64/vendor.semc.hardware.display@2.2.so
 
 # Display (HDR)
 vendor/lib64/libhdr_tm.so
@@ -826,8 +824,6 @@ vendor/lib64/libdpps.so
 vendor/lib64/libqdcm-mode-parser.so
 vendor/lib64/libsnapdragoncolor-manager.so
 vendor/lib64/libsnapdragoncolor-qdcm.so
-vendor/lib64/libsdmutils.so
-vendor/lib64/libqdutils.so
 
 # Display (SDM)
 vendor/etc/display/DPU660.xml
@@ -836,7 +832,6 @@ vendor/etc/display/DPU720.xml
 vendor/etc/display/DPU7__.xml
 vendor/etc/display/advanced_sf_offsets.xml
 vendor/lib64/libdisplayqos.so
-vendor/lib64/libdisplaydebug.so
 vendor/lib64/libdisplayskuutils.so
 vendor/lib64/libqseed3.so
 vendor/lib64/librcmask.so
@@ -846,7 +841,6 @@ vendor/lib64/libsdm-diag.so
 vendor/lib64/libsdm-disp-vndapis.so
 vendor/lib64/libsdmextension.so
 vendor/lib64/libtinyxml2_1.so
-vendor/lib64/libqservice.so
 
 # Display calibration data
 vendor/etc/qdcm_calib_data_Dual_nt35597_cmd_mode_dsi_truly_panel_without_DSC.xml
@@ -1112,7 +1106,7 @@ vendor/lib64/hw/vulkan.adreno.so
 vendor/app/CACertService/CACertService.apk
 vendor/bin/hw/android.hardware.gnss@2.1-service-qti
 vendor/bin/loc_launcher
-vendor/bin/lowi-server
+vendor/bin/lowi-server;DISABLE_CHECKELF
 vendor/bin/mlid
 vendor/bin/slim_daemon
 vendor/bin/xtra-daemon
@@ -1138,7 +1132,6 @@ vendor/etc/xtwifi.conf
 vendor/lib/libcdfw_remote_api.so
 vendor/lib/libgps.utils.so
 vendor/lib/vendor.qti.hardware.qccsyshal@1.0.so
-vendor/lib/libwpa_client.so
 vendor/lib64/hw/android.hardware.gnss@2.1-impl-qti.so
 vendor/lib64/hw/vendor.qti.gnss@4.0-impl.so
 vendor/lib64/libaoa.so
@@ -1182,7 +1175,6 @@ vendor/lib64/vendor.qti.gnss@2.1.so
 vendor/lib64/vendor.qti.gnss@3.0.so
 vendor/lib64/vendor.qti.gnss@4.0-service.so
 vendor/lib64/vendor.qti.gnss@4.0.so
-vendor/lib64/libwpa_client.so
 vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so
 vendor/lib64/libc++_shared.so
 
@@ -1375,10 +1367,6 @@ vendor/lib/libqcodec2_mockfilter.so
 vendor/lib/libqcodec2_platform.so
 vendor/lib/libqcodec2_utils.so
 vendor/lib/libqcodec2_v4l2codec.so
-vendor/lib/libgrallocutils.so
-vendor/lib/libqdMetaData.so
-vendor/lib/libgralloc.qti.so
-vendor/lib64/libqdMetaData.so
 vendor/lib64/libqcodec2_base.so
 vendor/lib64/libqcodec2_basecodec.so
 vendor/lib64/libqcodec2_core.so
@@ -1387,8 +1375,6 @@ vendor/lib64/libqcodec2_mockfilter.so
 vendor/lib64/libqcodec2_platform.so
 vendor/lib64/libqcodec2_utils.so
 vendor/lib64/libqcodec2_v4l2codec.so
-vendor/lib64/libgrallocutils.so
-vendor/lib64/libgralloc.qti.so
 
 # Media Configs
 odm/etc/media_profiles_V1_0.xml
@@ -2156,8 +2142,6 @@ system_ext/priv-app/WfdService/WfdService.apk
 system_ext/lib64/libwfddisplayconfig.so
 system_ext/lib64/libdisplayconfig.system.qti.so
 system_ext/lib/libdisplayconfig.system.qti.so
-system/lib64/vendor.qti.hardware.display.config-V5-ndk.so
-system/lib/vendor.qti.hardware.display.config-V5-ndk.so
 
 
 # WiFi Display (vendor)
@@ -2289,8 +2273,6 @@ vendor/etc/wifi/p2p_supplicant_overlay.conf
 vendor/etc/wifi/regdb.bin
 vendor/etc/wifi/WCNSS_qcom_cfg.ini
 vendor/etc/wifi/wpa_supplicant_overlay.conf
-vendor/lib64/libcld80211.so
-vendor/lib/libcld80211.so
 
 # WLAN (zambezi)
 vendor/etc/wifi/wifi_txpower.conf

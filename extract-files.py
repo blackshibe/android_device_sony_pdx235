@@ -24,6 +24,13 @@ from extract_utils.fixups_blob import (
 from extract_utils.module import lib_fixups_user_type
 
 namespace_imports = [
+    'hardware/qcom-caf/wlan',
+    'hardware/qcom-caf/sm8450',
+    'hardware/sony',
+    'vendor/qcom/opensource/commonsys/display',
+    'vendor/qcom/opensource/commonsys-intf/display',
+    'vendor/qcom/opensource/dataservices',
+    'vendor/qcom/opensource/display',
 ]
 
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
@@ -49,7 +56,9 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.hardware.wifidisplaysession@1.0',
         'libmmosal'
     ): lib_fixup_vendor_suffix,
-    (): lib_fixup_remove,
+    (
+        'libwpa_client',
+    ): lib_fixup_remove,
 }
 
 blob_fixups: blob_fixups_user_type = {
