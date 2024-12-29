@@ -26,15 +26,21 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 IS_PHONE := true
 
+PRODUCT_BUILD_PROP_OVERRIDES := \
+    DeviceName=XQ-DC72 \
+    DeviceProduct=XQ-DC72 \
+    SystemDevice=XQ-DC72 \
+    SystemName=XQ-DC72 \
+    BuildFingerprint=Sony/XQ-DC72/XQ-DC72:14/68.1.A.2.270/068001A002027000521798587:user/release-keys \
+    BuildDesc="XQ-DC72-user 14 68.1.A.2.270 068001A002027000521798587 release-keys"
+
 PRODUCT_NAME := lineage_pdx235
 PRODUCT_DEVICE := pdx235
 PRODUCT_MANUFACTURER := Sony
 PRODUCT_BRAND := Sony
-PRODUCT_MODEL := Xperia 10 V
+PRODUCT_MODEL := XQ-DC72
+
+PRODUCT_SYSTEM_NAME := XQ-DC72
+PRODUCT_SYSTEM_DEVICE := XQ-DC72
 
 PRODUCT_GMS_CLIENTID_BASE := android-sonymobile
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="XQ-DC72-user 14 68.1.A.2.270 068001A002027000521798587 release-keys"
-
-BUILD_FINGERPRINT := Sony/XQ-DC72/XQ-DC72:14/68.1.A.2.270/068001A002027000521798587:user/release-keys
