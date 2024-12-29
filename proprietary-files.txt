@@ -1438,8 +1438,8 @@ vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxVideoDSMode.so
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libdsd2pcm.so
-vendor/lib/libOmxCore.so
-vendor/lib/libplatformconfig.so
+# vendor/lib/libOmxCore.so
+# vendor/lib/libplatformconfig.so
 vendor/lib64/libAlacSwDec.so
 vendor/lib64/libApeSwDec.so
 vendor/lib64/libFlacSwDec.so
@@ -1456,8 +1456,8 @@ vendor/lib64/libOmxG711Dec.so
 vendor/lib64/libOmxMpeghEncSw.so
 vendor/lib64/libOmxQcelp13Dec.so
 vendor/lib64/libOmxWmaDec.so
-vendor/lib64/libOmxCore.so
-vendor/lib64/libplatformconfig.so
+# vendor/lib64/libOmxCore.so
+# vendor/lib64/libplatformconfig.so
 
 # Peripheral manager
 vendor/bin/pm-proxy

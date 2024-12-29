@@ -1,2 +1,0 @@
-allow ueventd sony_camera_device:chr_file { create setattr };
-dontaudit ueventd firmware_file:lnk_file read;

@@ -25,7 +25,7 @@ from extract_utils.module import lib_fixups_user_type
 
 namespace_imports = [
     'hardware/qcom-caf/wlan',
-    'hardware/qcom-caf/sm8450',
+    'hardware/qcom-caf/sm8350',
     'hardware/sony',
     'vendor/qcom/opensource/commonsys/display',
     'vendor/qcom/opensource/commonsys-intf/display',
@@ -58,6 +58,7 @@ lib_fixups: lib_fixups_user_type = {
     ): lib_fixup_vendor_suffix,
     (
         'libwpa_client',
+	'libOmxCore',
     ): lib_fixup_remove,
 }
 
