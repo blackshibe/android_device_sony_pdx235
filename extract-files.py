@@ -63,23 +63,10 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
-    # TODO fix these better
-    'vendor/lib/libmmrtpdecoder_proprietary.so': blob_fixup().replace_needed('libmmosal.so', 'libmmosal_vendor.so'),
-    'vendor/lib/libmmrtpencoder_proprietary.so': blob_fixup().replace_needed('libmmosal.so', 'libmmosal_vendor.so'),
-    'vendor/lib/libwfduibcsink_proprietary.so': blob_fixup().replace_needed('libmmosal.so', 'libmmosal_vendor.so'),
-    'vendor/lib/libwfdmminterface_proprietary.so': blob_fixup().replace_needed('libmmosal.so', 'libmmosal_vendor.so'),
-    'vendor/lib/libFileMux_proprietary.so': blob_fixup().replace_needed('libmmosal.so', 'libmmosal_vendor.so'),
-    'vendor/lib/libwfdmmservice_proprietary.so': blob_fixup().replace_needed('libmmosal.so', 'libmmosal_vendor.so'),
-
-    'vendor/lib64/libdpmqmihal.so': blob_fixup().replace_needed('com.qualcomm.qti.dpm.api@1.0.so', 'com.qualcomm.qti.dpm.api@1.0_vendor.so'),
-    'vendor/bin/dpmQmiMgr': blob_fixup().replace_needed('com.qualcomm.qti.dpm.api@1.0.so', 'com.qualcomm.qti.dpm.api@1.0_vendor.so'),
-
-    'vendor/lib/vendor.qti.imsrtpservice@3.0-service-Impl.so': blob_fixup().replace_needed('vendor.qti.imsrtpservice@3.0.so', 'vendor.qti.imsrtpservice@3.0_vendor.so'),
-    'vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so': blob_fixup().replace_needed('vendor.qti.imsrtpservice@3.0.so', 'vendor.qti.imsrtpservice@3.0_vendor.so'),
-    'vendor/lib64/lib-imsvtcore.so': blob_fixup().replace_needed('vendor.qti.imsrtpservice@3.0.so', 'vendor.qti.imsrtpservice@3.0_vendor.so'),
-    'vendor/lib64/vendor.qti.data.factory@2.0.so': blob_fixup().replace_needed('vendor.qti.ims.rcsconfig@1.0.so', 'vendor.qti.ims.rcsconfig@1.0_vendor.so'),
-
-    'system_ext/lib/libwfdservice.so': blob_fixup().replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V3-cpp.so'),
+    'system_ext/lib/libwfdservice.so': blob_fixup()
+        .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V3-cpp.so'),
+    'system_ext/lib/libwfdmmsrc_system.so': blob_fixup()
+        .add_needed('libgui_shim.so'),
 }
 
 module = ExtractUtilsModule(
