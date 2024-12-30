@@ -2,6 +2,7 @@
 
 # files without elfcheck:
 # libcne, lowi-server depend on libwpa_client, which is a gnu makefile target
+# libmorpho_movie_stabilizer depends on NDK libnativewindow and build is unable to resolve its symbols
 
 # ACDB
 vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
@@ -622,7 +623,7 @@ vendor/lib64/libmmcamera_lscv35.so
 vendor/lib64/libmmcamera_mfnr_t4.so
 vendor/lib64/libmmcamera_mfnr.so
 vendor/lib64/libmmcamera_pdpc.so
-vendor/lib64/libmorpho_movie_stabilizer.so
+vendor/lib64/libmorpho_movie_stabilizer.so;DISABLE_CHECKELF
 vendor/lib64/libmpbase.so
 vendor/lib64/libofflinedump.so
 vendor/lib64/libofflinelog.so
