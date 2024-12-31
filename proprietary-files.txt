@@ -3,6 +3,8 @@
 # files without elfcheck:
 # libcne, lowi-server depend on libwpa_client, which is a gnu makefile target
 # libmorpho_movie_stabilizer depends on NDK libnativewindow and build is unable to resolve its symbols
+# The following libs depends on GNU makefile targets: libznr, libcne, libwqe, lowi-server, libOmxVideoDSMode, libwfdmmsrc_proprietary
+
 
 # ACDB
 vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
@@ -164,13 +166,13 @@ vendor/lib/libiVptHkiDec.so
 vendor/lib/libiVptLibC.so
 vendor/lib/libops.so
 vendor/lib/librebuffering.so
-vendor/lib/libznr.so
+vendor/lib/libznr.so;DISABLE_CHECKELF
 vendor/lib/soundfx/libasphere.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 vendor/lib/soundfx/libshoebox.so
-vendor/lib/soundfx/libznrwrapper.so
+vendor/lib/soundfx/libznrwrapper.so;FIX_SONAME
 vendor/lib64/libiVptApi.so
 vendor/lib64/libiVptHkiDec.so
 vendor/lib64/libiVptLibC.so
@@ -382,7 +384,7 @@ vendor/lib/libarcsoft_rer.so
 vendor/lib/libarcsoft_smart_denoise.so
 vendor/lib/libarcsoft_superportrait.so
 vendor/lib/libarcsoft_video_hdr.so
-vendor/lib/libarcsoft_high_dynamic_range_v5.so
+vendor/lib/libarcsoft_high_dynamic_range_v5.so;DISABLE_CHECKELF
 vendor/lib/libarcsoft_bokehplus_image.so
 vendor/lib/libarcsoft_bokehplus_video.so
 vendor/lib/libarcsoft_conditiondetection.so
@@ -411,8 +413,6 @@ vendor/lib/libjpege.so
 vendor/lib/libmctfengine_stub.so
 vendor/lib/libmmcamera_bestats.so
 vendor/lib/libmmcamera_cac3.so
-vendor/lib/libmmcamera_faceproc.so
-vendor/lib/libmmcamera_faceproc2.so
 vendor/lib/libmmcamera_lscv35.so
 vendor/lib/libmmcamera_mfnr_t4.so
 vendor/lib/libmmcamera_mfnr.so
@@ -617,8 +617,6 @@ vendor/lib64/libjpege.so
 vendor/lib64/libmctfengine_stub.so
 vendor/lib64/libmmcamera_bestats.so
 vendor/lib64/libmmcamera_cac3.so
-vendor/lib64/libmmcamera_faceproc.so
-vendor/lib64/libmmcamera_faceproc2.so
 vendor/lib64/libmmcamera_lscv35.so
 vendor/lib64/libmmcamera_mfnr_t4.so
 vendor/lib64/libmmcamera_mfnr.so
@@ -733,7 +731,7 @@ vendor/lib/libcneapiclient.so
 vendor/lib/libcneoplookup.so
 vendor/lib/libcneqmiutils.so
 vendor/lib/libwms.so
-vendor/lib/libwqe.so
+vendor/lib/libwqe.so;DISABLE_CHECKELF
 vendor/lib/libxml.so
 vendor/lib/vendor.qti.data.factory@2.0.so
 vendor/lib/vendor.qti.data.factory@2.1.so
@@ -1436,7 +1434,7 @@ vendor/lib/libOmxG711Dec.so
 vendor/lib/libOmxMpeghDecSw.so
 vendor/lib/libOmxMpeghEncSw.so
 vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libOmxVideoDSMode.so
+vendor/lib/libOmxVideoDSMode.so;DISABLE_CHECKELF
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libdsd2pcm.so
 # vendor/lib/libOmxCore.so
@@ -2162,7 +2160,7 @@ vendor/lib/libwfdconfigutils_proprietary.so
 vendor/lib/libwfddisplayconfig_proprietary.so
 vendor/lib/libwfdmminterface_proprietary.so
 vendor/lib/libwfdmmservice_proprietary.so
-vendor/lib/libwfdmmsrc_proprietary.so
+vendor/lib/libwfdmmsrc_proprietary.so;DISABLE_CHECKELF
 vendor/lib/libwfdmodulehdcpsession.so
 vendor/lib/libwfdrtsp_proprietary.so
 vendor/lib/libwfdsessionmodule.so

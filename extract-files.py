@@ -67,6 +67,30 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V3-cpp.so'),
     'system_ext/lib/libwfdmmsrc_system.so': blob_fixup()
         .add_needed('libgui_shim.so'),
+    'vendor/lib64/vendor.semc.hardware.extlight-V1-ndk_platform.so': blob_fixup()
+        .replace_needed('android.hardware.light-V1-ndk_platform.so', 'android.hardware.light-V1-ndk.so'),
+    (
+        'vendor/lib/libwvhidl.so',
+        'vendor/lib64/libwvhidl.so',
+        'vendor/lib/mediadrm/libwvdrmengine.so',
+        'vendor/lib64/mediadrm/libwvdrmengine.so',
+    ): blob_fixup()
+        .add_needed('libcrypto_shim.so'),
+    (
+        'vendor/lib/libiVptApi.so',
+        'vendor/lib64/libiVptApi.so',
+    ): blob_fixup()
+        .add_needed('libiVptLibC.so'),
+    (
+        'vendor/lib/libiVptLibC.so',
+        'vendor/lib/libHpEqApi.so',
+        'vendor/lib64/libiVptLibC.so',
+        'vendor/lib64/libHpEqApi.so',
+    ): blob_fixup()
+        .add_needed('libcrypto.so')
+        .add_needed('libiVptHkiDec.so'),
+    'system_ext/lib64/libwfdnative.so': blob_fixup()
+        .add_needed('libinput_shim.so'),
 }
 
 module = ExtractUtilsModule(
