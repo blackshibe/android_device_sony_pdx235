@@ -1,6 +1,6 @@
 # Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-# Copyright (C) 2020 Sony Corporation
 # Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
+# Copyright (C) 2022 Sony Corporation
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -31,7 +31,6 @@
 # Modifications are licensed under the License.
 #
 
-#modify by zhouchenghua for baseline upgrade at 2022/7/6 start
 import /vendor/etc/init/hw/init.qti.kernel.rc
 
 on early-init
@@ -40,7 +39,6 @@ on early-init
     exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.qti.early_init.sh
     setprop ro.soc.model ${ro.vendor.qti.soc_model}
     wait /sys/devices/soc0/soc_id
-#modify by zhouchenghua for baseline upgrade at 2022/7/6 end
 
 on init
     # Scheduler uclamp
@@ -82,10 +80,13 @@ on fs
     chmod 0771 /mnt/vendor/persist
     restorecon_recursive /mnt/vendor/persist
     mkdir /mnt/vendor/persist/data 0700 system system
-    mkdir /mnt/vendor/persist/flag 0700 system system
-    mkdir /mnt/vendor/persist/haptics/ 0700 system system
     mkdir /mnt/vendor/persist/wlan 0700 system system
     chmod 0700 /mnt/vendor/persist/wlan
+
+    mkdir /mnt/vendor/persist/flag 0700 system system
+    mkdir /mnt/vendor/persist/data/tz 0700 system system
+    mkdir /mnt/vendor/persist/data/app_g 0700 system system
+#    start hq-fsg
 
 on post-fs
     # set RLIMIT_MEMLOCK to 64MB
@@ -93,20 +94,11 @@ on post-fs
 
 on late-fs
     wait_for_prop hwservicemanager.ready true
-    #exec_start wait_for_keymaster
+    exec_start wait_for_keymaster
     mount_all --late
 
 on post-fs-data
     mkdir /vendor/data/tombstones 0771 system system
-    chown system system /dev/esfp0
-    chmod 0660 /dev/esfp0
-    chown system system /sys/bus/platform/drivers/HardwareInfo/HardwareInfo/gsensor
-    chown system system /sys/bus/platform/drivers/HardwareInfo/HardwareInfo/msensor
-    chown system system /sys/bus/platform/drivers/HardwareInfo/HardwareInfo/alsps
-    chown system system /sys/bus/platform/drivers/HardwareInfo/HardwareInfo/gyro
-    chown system system /sys/bus/platform/drivers/HardwareInfo/HardwareInfo/hall
-    # Enable WLAN cold boot calibration
-    write /sys/devices/platform/soc/b0000000.qcom,cnss-qca6490/fs_ready 1
 
 on early-boot
     start vendor.sensors
@@ -124,6 +116,8 @@ on boot
     chmod 0660 /dev/cpuset/camera-daemon/tasks
     chown system system /sys/devices/virtual/sec/tsp/cmd
     chmod 0660 /sys/devices/virtual/sec/tsp/cmd
+    chown system system /sys/bus/i2c/drivers/fts_ts/3-0038/fts_test
+    chmod 0664 /sys/bus/i2c/drivers/fts_ts/3-0038/fts_test
     #USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
     setprop vendor.usb.rmnet.func.name "gsi"
@@ -131,9 +125,6 @@ on boot
     setprop vendor.usb.dpl.inst.name "dpl"
     setprop vendor.usb.qdss.inst.name "qdss_mdm"
     setprop vendor.usb.controller 4e00000.dwc3
-    #Load WLAN driver
-    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ qca_cld3_wlan qca_cld3_qca6490
-    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/5.4-gki qca_cld3_wlan qca_cld3_qca6490
 
 on property:vendor.display.lcd_density=560
    setprop dalvik.vm.heapgrowthlimit 256m
@@ -144,16 +135,10 @@ on property:vendor.display.lcd_density=640
 on boot && property:persist.vendor.usb.controller.default=*
     setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
 
-on init && property:ro.boot.mode=charger
-    mount_all /vendor/etc/charger_fw_fstab.qti --early
-    write /sys/kernel/boot_adsp/boot 1
-    wait /sys/class/power_supply/battery
-
 on charger
     start vendor.power_off_alarm
     setprop sys.usb.controller 4e00000.dwc3
     setprop sys.usb.configfs 1
-    write /sys/kernel/cnss/charger_mode 1
 
 service hq-fsg /vendor/bin/init.hq.fsg.sh
     user root
@@ -195,9 +180,6 @@ on property:init.svc.vendor.per_mgr=running
 on property:sys.shutdown.requested=*
     stop vendor.per_proxy
 
-on property:vold.decrypt=trigger_restart_framework
-   start vendor.cnss_diag
-
 service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
    class main
    user system
@@ -205,23 +187,24 @@ service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
    disabled
    oneshot
 
+#calibration
 on property:vendor.touch.cali=1
-    write /sys/devices/virtual/sec/tsp/cmd "run_force_calibration"
+	write /sys/bus/i2c/drivers/fts_ts/3-0038/fts_test "Asahi_FT3519T_SDC6.05_20220823.ini "
 
 on property:vendor.camera.cali=1
     mkdir /mnt/vendor/persist/camera 0755 system system
     mkdir /mnt/vendor/persist/camera/dual_calibration 0755 system system
-    chmod 0644 /vendor/etc/dualCaliParams_wt.bin
-    copy /vendor/etc/dualCaliParams_wt.bin /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wt.bin
+    chmod 0644 /data/media/0/Download/dualCaliParams_wt.bin
+    copy /data/media/0/Download/dualCaliParams_wt.bin /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wt.bin
     chmod 0644 /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wt.bin
-    chmod 0644 /vendor/etc/dualCaliParams_wu.bin
-    copy /vendor/etc/dualCaliParams_wu.bin /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wu.bin
+    chmod 0644 /data/media/0/Download/dualCaliParams_wu.bin
+    copy /data/media/0/Download/dualCaliParams_wt.bin /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wu.bin
     chmod 0644 /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wu.bin
     setprop vendor.camera.cali.state 1
 
 on property:vendor.camera.backup.cali=1
     chmod 0644 /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wt.bin
-    copy /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wt.bin /vendor/etc/dualCaliParams_wt_backup.bin
+    copy /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wt.bin /data/media/0/Download/dualCaliParams_wt_backup.bin
     chmod 0644 /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wu.bin
-    copy /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wu.bin /vendor/etc/dualCaliParams_wu_backup.bin
+    copy /mnt/vendor/persist/camera/dual_calibration/dualCaliParams_wu.bin /data/media/0/Download/dualCaliParams_wu_backup.bin
     setprop vendor.camera.cali.backup.state 1

@@ -261,14 +261,18 @@ PRODUCT_PACKAGES += \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
+    init.qcom.factory.rc \
+    init.qti.kernel.rc \
     init.recovery.qcom.rc \
     init.target.rc \
     ueventd.qcom.rc \
+    ueventd.rc \
     fstab.default \
     fstab.default.vendor_ramdisk \
     init.sony-device-common.rc \
     init.sony-platform.rc \
-    init.sony.rc
+    init.sony.rc \
+    init.logcat.rc 
 
 # Display
 PRODUCT_PACKAGES += \

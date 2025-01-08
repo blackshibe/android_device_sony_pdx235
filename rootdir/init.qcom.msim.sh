@@ -3,7 +3,7 @@
 model=`grep -aim1 'model:' /dev/block/bootdevice/by-name/LTALabel | sed -e 's/^.*model:[ ]*\([A-Za-z0-9-]*\).*$/\1/I'` 2> /dev/null
 
 case "$model" in
-    "XQ-CC44" | "XQ-CC54" "XQ-DC72")
+    "XQ-CC44" | "XQ-CC54" "XQ-DC54")
         setprop vendor.radio.multisim.config dsds;;
     * )
         setprop vendor.radio.multisim.config ss;;

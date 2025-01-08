@@ -40,7 +40,6 @@ AB_OTA_PARTITIONS += \
     vbmeta_system \
     odm \
     vendor \
-    vendor_dlkm \
     vendor_boot
 
 # Architecture
@@ -71,12 +70,10 @@ BOARD_KERNEL_CMDLINE := \
     video=vfb:640x400,bpp=32,memsize=3072000 \
     msm_rtb.filter=0x237 \
     service_locator.enable=1 \
-    androidboot.usbcontroller=a600000.dwc3 \
+    androidboot.usbcontroller=4e00000.dwc3 \
     swiotlb=0 \
     loop.max_part=7 \
     cgroup.memory=nokmem,nosocket \
-    pcie_ports=compat \
-    loop.max_part=7 \
     iptable_raw.raw_before_defrag=1 \
     ip6table_raw.raw_before_defrag=1
 
@@ -171,7 +168,6 @@ TARGET_USES_EGL_DISPLAY_ARRAY := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_HAS_HDR_DISPLAY := true
 TARGET_HAS_WIDE_COLOR_DISPLAY := true
-TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DISPLAY_RENDER_INTENTS := true
 TARGET_USES_DRM_PP := true
@@ -214,7 +210,7 @@ BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SOMC_DYNAMIC_PARTITIONS_PARTITION_LIST := product system vendor odm system_ext vendor_dlkm
+BOARD_SOMC_DYNAMIC_PARTITIONS_PARTITION_LIST := product system vendor odm system_ext
 # Dynamic partition size = (Super partition size / 2) - 4MB
 BOARD_SOMC_DYNAMIC_PARTITIONS_SIZE := 6169821184
 BOARD_SUPER_PARTITION_GROUPS := somc_dynamic_partitions
@@ -227,7 +223,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
 # OTA Assert
-TARGET_OTA_ASSERT_DEVICE := pdx235,XQ-DC72
+TARGET_OTA_ASSERT_DEVICE := pdx235,XQ-DC54
 
 # Power
 TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
@@ -241,7 +237,7 @@ TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/system_ext.prop
 
 # Recovery
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
+BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.default
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -251,7 +247,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2023-05-01
+VENDOR_SECURITY_PATCH := 2024-10-01
 
 # Telephony
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
@@ -264,6 +260,7 @@ TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 BOARD_AVB_VBMETA_SYSTEM := system system_ext product
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
