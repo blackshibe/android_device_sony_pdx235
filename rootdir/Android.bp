@@ -94,9 +94,3 @@ prebuilt_etc {
     src: "ueventd.rc",
     vendor: true,
 }
-
-prebuilt_etc {
-    name: "init.logcat.rc",
-    src: "init.logcat.rc",
-    vendor: true,
-}

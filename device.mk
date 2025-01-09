@@ -271,8 +271,11 @@ PRODUCT_PACKAGES += \
     fstab.default.vendor_ramdisk \
     init.sony-device-common.rc \
     init.sony-platform.rc \
-    init.sony.rc \
-    init.logcat.rc 
+    init.sony.rc
+
+# TODO - use bp package for this
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/fstab.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.default
 
 # Display
 PRODUCT_PACKAGES += \
